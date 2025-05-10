@@ -23,13 +23,16 @@ public class FitnessExample {
 
         public String invoke() {
 
-            if (isTestPage()) {
-                includeSetups();
-                buffer.append(pageData.getContent());
-                includeTearDowns();
-                pageData.setContent(buffer.toString());
-            }
+            if (isTestPage())
+                surroundPageWithSetUpsAndTearDowns();
             return pageData.getHtml();
+        }
+
+        private void surroundPageWithSetUpsAndTearDowns() {
+            includeSetups();
+            buffer.append(pageData.getContent());
+            includeTearDowns();
+            pageData.setContent(buffer.toString());
         }
 
         private boolean isTestPage() {
