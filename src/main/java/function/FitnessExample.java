@@ -27,9 +27,8 @@ public class FitnessExample {
                 includeSetups();
                 buffer.append(pageData.getContent());
                 includeTearDowns();
+                pageData.setContent(buffer.toString());
             }
-
-            pageData.setContent(buffer.toString());
             return pageData.getHtml();
         }
 
