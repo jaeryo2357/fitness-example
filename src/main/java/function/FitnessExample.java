@@ -11,15 +11,17 @@ public class FitnessExample {
     private class TestableHtmlBuilder {
         private PageData pageData;
         private boolean includeSuiteSetup;
+        private WikiPage wikiPage;
+        private StringBuffer buffer;
 
         public TestableHtmlBuilder(PageData pageData, boolean includeSuiteSetup) {
             this.pageData = pageData;
             this.includeSuiteSetup = includeSuiteSetup;
+            this.wikiPage = pageData.getWikiPage();
+            this.buffer = new StringBuffer();
         }
 
         public String invoke() {
-            WikiPage wikiPage = pageData.getWikiPage();
-            StringBuffer buffer = new StringBuffer();
 
             if (pageData.hasAttribute("Test")) {
                 if (includeSuiteSetup) {
