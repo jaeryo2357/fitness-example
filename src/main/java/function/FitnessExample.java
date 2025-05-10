@@ -39,23 +39,20 @@ public class FitnessExample {
 
         private void includeTearDowns() {
             includeInherited("TearDown", "!include -teardown .");
-            if (includeSuiteSetup) {
+            if (includeSuiteSetup)
                 includeInherited(SuiteResponder.SUITE_TEARDOWN_NAME, "!include -teardown .");
-            }
         }
 
         private void includeSetups() {
-            if (includeSuiteSetup) {
+            if (includeSuiteSetup)
                 includeInherited(SuiteResponder.SUITE_SETUP_NAME, "!include -setup .");
-            }
             includeInherited("SetUp", "!include -setup .");
         }
 
         private void includeInherited(String pageName, String setup) {
             WikiPage suiteSetup = PageCrawlerImpl.getInheritedPage(pageName, wikiPage);
-            if (suiteSetup != null) {
+            if (suiteSetup != null)
                 includePage(suiteSetup, setup);
-            }
         }
 
         private void includePage(WikiPage suiteSetup, String setup) {
