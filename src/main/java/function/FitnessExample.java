@@ -25,30 +25,34 @@ public class FitnessExample {
 
             if (pageData.hasAttribute("Test")) {
                 if (includeSuiteSetup) {
-                    WikiPage suiteSetup = PageCrawlerImpl.getInheritedPage(SuiteResponder.SUITE_SETUP_NAME, wikiPage);
+                    String pageName = SuiteResponder.SUITE_SETUP_NAME;
+                    String setup = "!include -setup .";
+                    WikiPage suiteSetup = PageCrawlerImpl.getInheritedPage(pageName, wikiPage);
                     if (suiteSetup != null) {
-                        String setup = "!include -setup .";
                         includePage(suiteSetup, setup);
                     }
                 }
-                WikiPage setup = PageCrawlerImpl.getInheritedPage("SetUp", wikiPage);
+                String pageName2 = "SetUp";
+                String setup2 = "!include -setup .";
+                WikiPage setup = PageCrawlerImpl.getInheritedPage(pageName2, wikiPage);
                 if (setup != null) {
-                    String setup2 = "!include -setup .";
                     includePage(setup, setup2);
                 }
             }
 
             buffer.append(pageData.getContent());
             if (pageData.hasAttribute("Test")) {
-                WikiPage teardown = PageCrawlerImpl.getInheritedPage("TearDown", wikiPage);
+                String pageName3 = "TearDown";
+                String teardown1 = "!include -teardown .";
+                WikiPage teardown = PageCrawlerImpl.getInheritedPage(pageName3, wikiPage);
                 if (teardown != null) {
-                    String teardown1 = "!include -teardown .";
                     includePage(teardown, teardown1);
                 }
                 if (includeSuiteSetup) {
-                    WikiPage suiteTeardown = PageCrawlerImpl.getInheritedPage(SuiteResponder.SUITE_TEARDOWN_NAME, wikiPage);
+                    String pageName4 = SuiteResponder.SUITE_TEARDOWN_NAME;
+                    String teardown2 = "!include -teardown .";
+                    WikiPage suiteTeardown = PageCrawlerImpl.getInheritedPage(pageName4, wikiPage);
                     if (suiteTeardown != null) {
-                        String teardown2 = "!include -teardown .";
                         includePage(suiteTeardown, teardown2);
                     }
                 }
