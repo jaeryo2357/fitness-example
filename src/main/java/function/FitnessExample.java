@@ -24,22 +24,30 @@ public class FitnessExample {
         public String invoke() {
 
             if (pageData.hasAttribute("Test")) {
-                if (includeSuiteSetup) {
-                    includeInherited(SuiteResponder.SUITE_SETUP_NAME, "!include -setup .");
-                }
-                includeInherited("SetUp", "!include -setup .");
+                includeSetups();
             }
 
             buffer.append(pageData.getContent());
             if (pageData.hasAttribute("Test")) {
-                includeInherited("TearDown", "!include -teardown .");
-                if (includeSuiteSetup) {
-                    includeInherited(SuiteResponder.SUITE_TEARDOWN_NAME, "!include -teardown .");
-                }
+                includeTearDowns();
             }
 
             pageData.setContent(buffer.toString());
             return pageData.getHtml();
+        }
+
+        private void includeTearDowns() {
+            includeInherited("TearDown", "!include -teardown .");
+            if (includeSuiteSetup) {
+                includeInherited(SuiteResponder.SUITE_TEARDOWN_NAME, "!include -teardown .");
+            }
+        }
+
+        private void includeSetups() {
+            if (includeSuiteSetup) {
+                includeInherited(SuiteResponder.SUITE_SETUP_NAME, "!include -setup .");
+            }
+            includeInherited("SetUp", "!include -setup .");
         }
 
         private void includeInherited(String pageName, String setup) {
