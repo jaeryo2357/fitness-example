@@ -25,10 +25,7 @@ public class FitnessExample {
 
             if (pageData.hasAttribute("Test")) {
                 includeSetups();
-            }
-
-            buffer.append(pageData.getContent());
-            if (pageData.hasAttribute("Test")) {
+                buffer.append(pageData.getContent());
                 includeTearDowns();
             }
 
