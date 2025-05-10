@@ -29,14 +29,16 @@ public class FitnessExample {
                     if (suiteSetup != null) {
                         WikiPagePath pagePath = wikiPage.getPageCrawler().getFullPath(suiteSetup);
                         String pagePathName = PathParser.render(pagePath);
-                        buffer.append("!include -setup .").append(pagePathName).append("\n");
+                        String setup = "!include -setup .";
+                        buffer.append(setup).append(pagePathName).append("\n");
                     }
                 }
                 WikiPage setup = PageCrawlerImpl.getInheritedPage("SetUp", wikiPage);
                 if (setup != null) {
                     WikiPagePath setupPath = wikiPage.getPageCrawler().getFullPath(setup);
                     String setupPathName = PathParser.render(setupPath);
-                    buffer.append("!include -setup .").append(setupPathName).append("\n");
+                    String setup2 = "!include -setup .";
+                    buffer.append(setup2).append(setupPathName).append("\n");
                 }
             }
 
@@ -46,14 +48,16 @@ public class FitnessExample {
                 if (teardown != null) {
                     WikiPagePath tearDownPath = wikiPage.getPageCrawler().getFullPath(teardown);
                     String tearDownPathName = PathParser.render(tearDownPath);
-                    buffer.append("!include -teardown .").append(tearDownPathName).append("\n");
+                    String teardown1 = "!include -teardown .";
+                    buffer.append(teardown1).append(tearDownPathName).append("\n");
                 }
                 if (includeSuiteSetup) {
                     WikiPage suiteTeardown = PageCrawlerImpl.getInheritedPage(SuiteResponder.SUITE_TEARDOWN_NAME, wikiPage);
                     if (suiteTeardown != null) {
                         WikiPagePath pagePath = wikiPage.getPageCrawler().getFullPath(suiteTeardown);
                         String pagePathName = PathParser.render(pagePath);
-                        buffer.append("!include -teardown .").append(pagePathName).append("\n");
+                        String teardown2 = "!include -teardown .";
+                        buffer.append(teardown2).append(pagePathName).append("\n");
                     }
                 }
             }
